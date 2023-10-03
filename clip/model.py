@@ -183,7 +183,7 @@ class ResidualAttentionBlock(nn.Module):
         return self.attn(x, x, x, need_weights=True, attn_mask=self.attn_mask)
 
     def forward(self, x: torch.Tensor):
-        x = x + self.attention(self.ln_1(x))
+        x = x + self.attention(self.ln_1(x))[0]
         x = x + self.mlp(self.ln_2(x))
         return x
 
